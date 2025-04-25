@@ -1,24 +1,46 @@
 {
   "name": "tsdiapi-crud",
-  "description": "A TSDIAPI plugin to extend API functionality with crud.",
-  "variables": [
+  "description": "A TSDIAPI plugin that provides automatic CRUD (Create, Read, Update, Delete) API generation for your database entities. It generates TypeScript modules and services with full type safety, validation, and best practices.",
+  "generators": [
     {
-      "name": "TSDIAPI_CRUD_VARIABLE_NAME",
-      "type": "string",
-      "configurable": false,
-      "description": "Enter value for TSDIAPI_CRUD_VARIABLE_NAME",
-      "inquirer": {
-        "type": "input",
-        "message": "Enter value for TSDIAPI_CRUD_VARIABLE_NAME"
-      }
+      "name": "base",
+      "description": "Generate CRUD API for a Prisma model",
+      "args": [
+        {
+          "name": "entityName",
+          "description": "The name of the Prisma model (e.g., User, Product, Order). The case will be preserved as entered.",
+          "inquirer": {
+            "type": "input",
+            "message": "Enter the name of the Prisma model (e.g., User, Product, Order)",
+            "default": "User"
+          }
+        }
+      ],
+      "files": [
+        {
+          "source": "generators/feature/*.*",
+          "destination": "[name]",
+          "overwrite": false,
+          "isHandlebarsTemplate": true
+        }
+      ],
+      "prismaScripts": [
+        {
+          "command": "ADD MODEL {{pascalCase entityName}} ({id String @id @default(cuid()) | name String });",
+          "description": "Add the model to the Prisma schema"
+        }
+      ],
+      "postMessages": [
+        "✅ CRUD API for {{entityName}} generated successfully!",
+        "⚠️ Please ensure to run the necessary database migrations and verify the Prisma database connection. This is the user's responsibility."
+      ]
     }
   ],
-  "postMessages": [
-    "✅ Plugin tsdiapi-crud has been successfully installed!",
-    "📖 Check the documentation for more details!"
-  ],
-  "postInstall": "npx prisma generate",
   "preMessages": [
-    "⚠️ Hello"
+    "👋 Welcome to the TSDIAPI CRUD plugin configuration!"
+  ],
+  "postMessages": [
+    "✅ Plugin successfully installed!",
+    "💡 To generate CRUD for an entity, use: tsdiapi generate crud <entityName>"
   ]
 }

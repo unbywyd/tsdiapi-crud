@@ -1,6 +1,6 @@
 {
   "name": "@tsdiapi/crud",
-  "description": "A TSDIAPI plugin to extend API functionality with crud.",
+  "description": "A TSDIAPI plugin that provides automatic CRUD (Create, Read, Update, Delete) API generation for your database entities. It generates TypeScript modules and services with full type safety, validation, and best practices.",
   "version": "0.0.1",
   "main": "output/index.js",
   "types": "output/index.d.ts",
@@ -13,7 +13,18 @@
     "node": ">=18.19.0"
   },
   "keywords": [
-    "tsdiapi"
+    "tsdiapi",
+    "crud",
+    "api",
+    "typescript",
+    "rest",
+    "api-generator",
+    "database",
+    "prisma",
+    "typebox",
+    "fastify",
+    "typedi",
+    "dependency-injection"
   ],
   "publishConfig": {
     "access": "public"

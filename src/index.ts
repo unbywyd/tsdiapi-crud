@@ -15,7 +15,6 @@ class App implements AppPlugin {
     }
     async onInit(ctx: AppContext) {
         this.context = ctx;
-        console.log('Hello, I am crud plugin.');
     }
 }
 
