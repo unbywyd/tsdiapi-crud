@@ -1,10 +1,16 @@
 # **crud Plugin for TSDIAPI**
 
-A TSDIAPI plugin to extend API functionality with crud.
+A TSDIAPI plugin that automatically generates CRUD (Create, Read, Update, Delete) REST API endpoints for your Prisma entities.
 
 ## 📌 About
 
-This is a **TSDIAPI** plugin designed to extend your server functionality. TSDIAPI is a modular framework that allows you to build scalable APIs with dynamic plugin support.
+This is a **TSDIAPI** plugin that serves as a code generator. It automatically creates fully functional CRUD REST API endpoints for your Prisma database entities. The generated code includes:
+
+- Service layer with CRUD operations
+- REST controllers with endpoints
+- Type validation schemas
+- Error handling
+- JWT authentication integration
 
 🔗 **TSDIAPI CLI:** [@tsdiapi/cli](https://www.npmjs.com/package/@tsdiapi/cli)
 
@@ -15,61 +21,46 @@ This is a **TSDIAPI** plugin designed to extend your server functionality. TSDIA
 You can install this plugin using npm:
 
 ```bash
-npm install --save @tsdiapi/crud
-```
-
-Then, register the plugin in your TSDIAPI project:
-
-```typescript
-import { createApp } from "@tsdiapi/server";
-import createPlugin from "@tsdiapi/crud";
-
-createApp({
-    plugins: [createPlugin()]
-});
+tsdiapi add crud
 ```
 
 ---
 
 ## 🚀 Features
 
-- 🛠 **Extend TSDIAPI** with additional functionalities.
-- ⚙ **Seamless integration** with your existing API.
-- 🏗 **Fully configurable** to match your project needs.
+- 🛠 **Automatic CRUD Generation** - Generates complete CRUD API for any Prisma entity
+- ⚡ **REST Endpoints** - Creates standard REST endpoints (GET, POST, PUT, DELETE)
+- 🔒 **Built-in Security** - Includes JWT authentication
+- 📝 **Type Safety** - Full TypeScript support with validation schemas
+- 🔄 **Pagination** - Built-in support for list operations with pagination
+- 🛡️ **Error Handling** - Comprehensive error handling and validation
 
 ---
 
-## 🔧 Configuration
+## 🔧 Usage
 
-This plugin can be configured via options when initializing:
+To generate CRUD API for a Prisma entity, simply run:
 
-```typescript
-createPlugin({
-});
+```bash
+tsdiapi generate crud <entityName>
 ```
 
-| Option            | Type   | Default | Description |
-|------------------|-------|---------|-------------|
+Where `<entityName>` is your Prisma model name (e.g., User, Product, Order).
 
----
+The generator will create:
+- Service layer with CRUD operations
+- REST controllers with endpoints
+- Type validation schemas
 
-## 📌 How to Use
+### Generated Endpoints
 
-After installation, you can use this plugin as part of your **TSDIAPI** application. If additional configuration is required, it can be passed as an object when initializing the plugin.
+For each entity, the following REST endpoints are created:
 
-### Example Usage:
-
-```typescript
-import { createApp } from "@tsdiapi/server";
-import createPlugin from "@tsdiapi/crud";
-
-const app = createApp({
-    plugins: [createPlugin({
-    })]
-});
-
-app.start();
-```
+- `GET /` - List entities with pagination
+- `GET /:id` - Get entity by ID
+- `POST /` - Create new entity
+- `PUT /:id` - Update entity
+- `DELETE /:id` - Delete entity
 
 ---
 
