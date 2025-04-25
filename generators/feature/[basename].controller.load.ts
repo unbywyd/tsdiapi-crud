@@ -105,7 +105,7 @@ export default function {{lowerCase entityName}}Module({ useRoute }: AppContext)
             }
             const {{lowerCase entityName}} = await {{lowerCase entityName}}Service.get{{pascalCase entityName}}ById(req.params.id);
             if (!{{lowerCase entityName}}) {
-                return sendError("{{pascalCase entityName}} not found", {
+                throw sendError("{{pascalCase entityName}} not found", {
                     errors: [{ message: "{{pascalCase entityName}} not found" }]
                 });
             }
@@ -128,6 +128,7 @@ export default function {{lowerCase entityName}}Module({ useRoute }: AppContext)
         .version("1")
         .code(204, Type.Null())
         .code(400, ResponseErrorSchema)
+        .code(403, ResponseErrorSchema)
         .summary("Delete {{lowerCase entityName}}")
         .tags(["{{lowerCase entityName}}"])
         .auth('bearer')
@@ -140,7 +141,7 @@ export default function {{lowerCase entityName}}Module({ useRoute }: AppContext)
             }
             const {{lowerCase entityName}} = await {{lowerCase entityName}}Service.get{{pascalCase entityName}}ById(req.params.id);
             if (!{{lowerCase entityName}}) {
-                return sendError("{{pascalCase entityName}} not found", {
+                throw sendError("{{pascalCase entityName}} not found", {
                     errors: [{ message: "{{pascalCase entityName}} not found" }]
                 });
             }
