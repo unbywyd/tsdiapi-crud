@@ -1,0 +1,24 @@
+{
+  "name": "tsdiapi-crud",
+  "description": "A TSDIAPI plugin to extend API functionality with crud.",
+  "variables": [
+    {
+      "name": "TSDIAPI_CRUD_VARIABLE_NAME",
+      "type": "string",
+      "configurable": false,
+      "description": "Enter value for TSDIAPI_CRUD_VARIABLE_NAME",
+      "inquirer": {
+        "type": "input",
+        "message": "Enter value for TSDIAPI_CRUD_VARIABLE_NAME"
+      }
+    }
+  ],
+  "postMessages": [
+    "✅ Plugin tsdiapi-crud has been successfully installed!",
+    "📖 Check the documentation for more details!"
+  ],
+  "postInstall": "npx prisma generate",
+  "preMessages": [
+    "⚠️ Hello"
+  ]
+}
