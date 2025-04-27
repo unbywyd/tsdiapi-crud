@@ -1,7 +1,7 @@
 {
   "name": "@tsdiapi/crud",
   "description": "A TSDIAPI plugin that provides automatic CRUD (Create, Read, Update, Delete) API generation for your database entities. It generates TypeScript modules and services with full type safety, validation, and best practices.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "output/index.js",
   "types": "output/index.d.ts",
   "type": "module",

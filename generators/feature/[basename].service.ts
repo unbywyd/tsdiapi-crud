@@ -60,7 +60,7 @@ export class {{pascalCase entityName}}Service {
         }
         const prisma = usePrisma<PrismaClient>();
         return prisma.{{lowerCase entityName}}.create({
-            data: data as Prisma.UserCreateInput
+            data: data as Prisma.{{pascalCase entityName}}CreateInput
         });
     }
 
@@ -68,7 +68,7 @@ export class {{pascalCase entityName}}Service {
         const prisma = usePrisma<PrismaClient>();
         return prisma.{{lowerCase entityName}}.update({
             where: { id },
-            data: data as Prisma.UserUpdateInput
+            data: data as Prisma.{{pascalCase entityName}}UpdateInput
         });
     }
 

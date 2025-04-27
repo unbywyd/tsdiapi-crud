@@ -19,7 +19,8 @@
       "files": [
         {
           "source": "generators/feature/*.*",
-          "destination": "[name]",
+          "destination": "src/api/[name]",
+          "isRoot": true,
           "overwrite": false,
           "isHandlebarsTemplate": true
         }
