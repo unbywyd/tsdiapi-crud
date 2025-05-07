@@ -11,8 +11,8 @@ export default function {{lowerCase entityName}}Module({ useRoute }: AppContext)
 
     // List items
     useRoute()
-        .controller("items")
-        .get("/")
+        .controller("{{lowerCase entityName}}")
+        .get("/list")
         .version("1")
         .query(QueryList{{pascalCase entityName}}Schema)
         .codes(codes)
@@ -37,7 +37,7 @@ export default function {{lowerCase entityName}}Module({ useRoute }: AppContext)
 
     // Get {{lowerCase entityName}} by ID
     useRoute()
-        .controller("items")
+        .controller("{{lowerCase entityName}}")
         .get("/:id")
         .version("1")
         .codes(buildResponseCodes(Output{{pascalCase entityName}}Schema))
@@ -63,7 +63,7 @@ export default function {{lowerCase entityName}}Module({ useRoute }: AppContext)
 
     // Create {{lowerCase entityName}}
     useRoute()
-        .controller("items")
+        .controller("{{lowerCase entityName}}")
         .post("/")
         .version("1")
         .codes(buildResponseCodes(Output{{pascalCase entityName}}Schema))
@@ -88,7 +88,7 @@ export default function {{lowerCase entityName}}Module({ useRoute }: AppContext)
 
     // Update {{lowerCase entityName}}
     useRoute()
-        .controller("items")
+        .controller("{{lowerCase entityName}}")
         .put("/:id")
         .version("1")
         .codes(buildResponseCodes(Output{{pascalCase entityName}}Schema))
@@ -123,7 +123,7 @@ export default function {{lowerCase entityName}}Module({ useRoute }: AppContext)
 
     // Delete {{lowerCase entityName}}
     useRoute()
-        .controller("items")
+        .controller("{{lowerCase entityName}}")
         .delete("/:id")
         .version("1")
         .code(204, Type.Null())
