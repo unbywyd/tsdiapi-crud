@@ -8,7 +8,7 @@ import { ResponseBadRequest } from '@tsdiapi/server';
 @Service()
 export class {{pascalCase entityName}}Service {
     constructor() { }
-    async list{{lowerCase entityName}}(query: QueryList{{pascalCase entityName}}SchemaType) {
+    async list{{camelCase entityName}}(query: QueryList{{pascalCase entityName}}SchemaType) {
         const prisma = usePrisma<PrismaClient>();
         const where: Prisma.{{pascalCase entityName}}WhereInput = {
             ...(query.dateAtLte && query.dateAtGte ? {
@@ -30,7 +30,7 @@ export class {{pascalCase entityName}}Service {
                 }
             } : {}),
         }
-        const results = await prisma.{{lowerCase entityName}}.findMany({
+        const results = await prisma.{{camelCase entityName}}.findMany({
             take: query.take || 100,
             skip: query.skip || 0,
             ...(query?.orderBy ? {
@@ -38,7 +38,7 @@ export class {{pascalCase entityName}}Service {
             } : {}),
             where: where
         });
-        const total = await prisma.{{lowerCase entityName}}.count({
+        const total = await prisma.{{camelCase entityName}}.count({
             where: where
         });
         return {
@@ -49,7 +49,7 @@ export class {{pascalCase entityName}}Service {
 
     async get{{pascalCase entityName}}ById(id: string) {
         const prisma = usePrisma<PrismaClient>();
-        return prisma.{{lowerCase entityName}}.findUnique({
+        return prisma.{{camelCase entityName}}.findUnique({
             where: { id }
         });
     }
@@ -59,14 +59,14 @@ export class {{pascalCase entityName}}Service {
             throw new ResponseBadRequest("Name is required");
         }
         const prisma = usePrisma<PrismaClient>();
-        return prisma.{{lowerCase entityName}}.create({
+        return prisma.{{camelCase entityName}}.create({
             data: data as Prisma.{{pascalCase entityName}}CreateInput
         });
     }
 
     async update{{pascalCase entityName}}(id: string, data: Input{{pascalCase entityName}}SchemaType) {
         const prisma = usePrisma<PrismaClient>();
-        return prisma.{{lowerCase entityName}}.update({
+        return prisma.{{camelCase entityName}}.update({
             where: { id },
             data: data as Prisma.{{pascalCase entityName}}UpdateInput
         });
@@ -74,7 +74,7 @@ export class {{pascalCase entityName}}Service {
 
     async delete{{pascalCase entityName}}(id: string) {
         const prisma = usePrisma<PrismaClient>();
-        return prisma.{{lowerCase entityName}}.delete({
+        return prisma.{{camelCase entityName}}.delete({
             where: { id }
         });
     }
