@@ -2,7 +2,7 @@ import { Prisma } from '@generated/prisma/index.js';
 import { Service } from "typedi";
 import type { PrismaClient } from "@generated/prisma/index.js";
 import { usePrisma } from "@tsdiapi/prisma";
-import { Input{{pascalCase entityName}}SchemaType, QueryList{{pascalCase entityName}}SchemaType } from "@base/api/typebox-schemas/models/index.js";
+import { Input{{pascalCase entityName}}SchemaType, QueryList{{pascalCase entityName}}SchemaType } from "@generated/typebox-schemas/models/index.js";
 import { ResponseBadRequest } from '@tsdiapi/server';
 
 @Service()

@@ -2,7 +2,7 @@ import { AppContext, useResponseSchemas, response400, responseNull, ResponseErro
 import { Type } from "@sinclair/typebox";
 import { Container } from "typedi";
 import { {{pascalCase entityName}}Service } from "./{{kebabCase name}}.service.js";
-import { QueryList{{pascalCase entityName}}Schema, OutputList{{pascalCase entityName}}Schema, Input{{pascalCase entityName}}Schema, Output{{pascalCase entityName}}Schema } from "@base/api/typebox-schemas/models/index.js";
+import { QueryList{{pascalCase entityName}}Schema, OutputList{{pascalCase entityName}}Schema, Input{{pascalCase entityName}}Schema, Output{{pascalCase entityName}}Schema } from "@generated/typebox-schemas/models/index.js";
 import { JWTGuard } from "@tsdiapi/jwt-auth";
 
 export default function {{camelCase entityName}}Module({ useRoute }: AppContext): void {
