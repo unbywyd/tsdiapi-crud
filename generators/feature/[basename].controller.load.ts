@@ -1,4 +1,4 @@
-import { AppContext, useResponseSchemas, response400, responseNull, ResponseError, ResponseErrorSchema, buildResponseCodes, responseSuccess, responseError, ResponseForbidden} from "@tsdiapi/server";
+import { AppContext, useResponseSchemas, response400, responseNull, ResponseError, ResponseErrorSchema, buildResponseCodes, responseSuccess, responseError, ResponseForbidden, addSchema} from "@tsdiapi/server";
 import { Type } from "@sinclair/typebox";
 import { Container } from "typedi";
 import { {{pascalCase entityName}}Service } from "./{{kebabCase name}}.service.js";
@@ -8,6 +8,11 @@ import { JWTGuard } from "@tsdiapi/jwt-auth";
 export default function {{camelCase entityName}}Module({ useRoute }: AppContext): void {
     const {{camelCase entityName}}Service = Container.get({{pascalCase entityName}}Service);
     const { codes, sendSuccess, sendError } = useResponseSchemas(OutputList{{pascalCase entityName}}Schema);
+
+    // Схема для параметра id используется в нескольких маршрутах
+    const {{pascalCase entityName}}IdParamSchema = addSchema(Type.Object({
+        id: Type.String()
+    }, { $id: '{{pascalCase entityName}}IdParamSchema' }));
 
     // List items
     useRoute()
@@ -43,7 +48,7 @@ export default function {{camelCase entityName}}Module({ useRoute }: AppContext)
         .codes(buildResponseCodes(Output{{pascalCase entityName}}Schema))
         .summary("Get {{camelCase entityName}} by ID")
         .tags(["{{camelCase entityName}}"])
-        .params(Type.Object({ id: Type.String() }))
+        .params({{pascalCase entityName}}IdParamSchema)
         .resolve(async (req) => {
             const {{camelCase entityName}} = await {{camelCase entityName}}Service.get{{pascalCase entityName}}ById(req.params.id);
             if (!{{camelCase entityName}}) {
@@ -96,7 +101,7 @@ export default function {{camelCase entityName}}Module({ useRoute }: AppContext)
         .tags(["{{camelCase entityName}}"])
         .auth('bearer')
         .guard(JWTGuard())
-        .params(Type.Object({ id: Type.String() }))
+        .params({{pascalCase entityName}}IdParamSchema)
         .body(Input{{pascalCase entityName}}Schema)
         .resolve(async (req) => {
             const session = req.session;
@@ -133,7 +138,7 @@ export default function {{camelCase entityName}}Module({ useRoute }: AppContext)
         .tags(["{{camelCase entityName}}"])
         .auth('bearer')
         .guard(JWTGuard())
-        .params(Type.Object({ id: Type.String() }))
+        .params({{pascalCase entityName}}IdParamSchema)
         .resolve(async (req) => {
             const session = req.session;
             if (!session.adminId) {
